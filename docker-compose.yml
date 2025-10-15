@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  cv-website:
+    build: .
+    container_name: eya-cv-container
+    ports:
+      - "8080:80"
+    volumes:
+      - ./index.html:/usr/share/nginx/html/index.html
+      - ./style.css:/usr/share/nginx/html/style.css
+    restart: unless-stopped
+    networks:
+      - cv-network
+
+networks:
+  cv-network:
+    driver: bridge
